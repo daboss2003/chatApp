@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar{
+    @apply w-1 bg-white sm:block hidden ;
+}
+
+::-webkit-scrollbar-thumb{
+    @apply  h-1 cursor-grab bg-darkLight dark:bg-blueColor rounded-lg;
+}
+
+
+
+.message__user::after{
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    right: -1%;
+    transform: rotate(145deg);
+}
+
+.message::after {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    transform: rotate(-25deg);
+    top: -15px;
+    z-index: 1;
+    left: -1%;
+}
