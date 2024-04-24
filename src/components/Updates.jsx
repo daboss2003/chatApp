@@ -13,11 +13,11 @@ function Updates() {
     const Allusers = useContext(AllUsersContext);
     const filtered = Allusers.filter(item => item.id !== user.id)
   return (
-      <div className='w-screen py-2 px-2 bg-light overflow-x-hidden overflow-y-auto max-h-[80vh] pb-6'>
+      <div className='w-screen py-2 px-2 overflow-x-hidden overflow-y-auto max-h-[76vh] pb-16'>
           <div className='flex justify-between items-center pb-3'>
               <h2 className='font-bold text-lg'>Status</h2>
               <div className='dropdown'>
-                  <button><CiMenuKebab size={25} /></button>
+                  <button className='text-dark'><CiMenuKebab size={25} /></button>
                   <div>
                       <li>see all statuses</li>
                       <li>Status privacy</li>
@@ -38,7 +38,7 @@ function Updates() {
 
           <div className='flex items-center justify-between py-3 '>
               <h2 className='font-bold text-lg'>Channels</h2>
-              <button className='p-3'><FaPlus size={20} /></button>
+              <button className='p-3'><FaPlus size={18} /></button>
           </div>
           <div className='flex items-center gap-3 p-3 hover:bg-gray-200 cursor-pointer w-full'>
                 <figure><img src={mark} alt="" className='w-[60px] h-[60px] rounded-full' /></figure>
@@ -65,8 +65,8 @@ function Updates() {
           </div>
 
         <div className='absolute right-3 bottom-3 flex flex-col gap-3 items-center'>
-            <button className='p-2 rounded-md bg-gray-300 text-light'><MdEdit /></button>
-            <button className='p-4 bg-blueColor text-light rounded-lg cursor-pointer'><FaCamera size={20} /></button>
+            <button className='p-2 rounded-md bg-blue-100 text-colorTeal'><MdEdit size={23} /></button>
+            <button className='p-4 bg-colorTeal text-light rounded-lg cursor-pointer'><FaCamera size={23} /></button>
         </div>
     </div>
   )

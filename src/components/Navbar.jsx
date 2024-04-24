@@ -38,7 +38,7 @@ function Navbar() {
 
 
   return (
-    <div className={`md:w-[60px] px-2 md:py-5 order-1 md:order-[0] flex md:flex-col items-center justify-between w-full md:h-[90vh]  h-[12vh] ${globalView.showNav ? 'flex' : 'hidden'} ${window.innerWidth < 768 && 'bg-gray-300'}`}>
+    <div className={`md:w-[60px] md:px-2 md:py-5 order-1 md:order-[0] flex md:flex-col items-center justify-between w-full md:h-[90vh]  h-[16vh] ${globalView.showNav ? 'flex' : 'hidden'} ${window.innerWidth < 768 && 'bg-gray-100 shadow-lg'}`}>
       {window.innerWidth >= 768 && 
         <>
         <div className='flex md:flex-col gap-4 items-center'>
@@ -57,21 +57,21 @@ function Navbar() {
         </>
       }
       {window.innerWidth < 768 &&
-        <div className='flex justify-around items-center p-2 w-full'>
-          <div className={`flex flex-col items-center gap-1 cursor-pointer ${active === 0 && 'text-light font-bold'}`} onClick={()=> handelSlide(0)}>
-            <button className={`${active === 0 && 'bg-gray-200 shadow-md px-5 p-[2px] rounded-md'}`}><BiSolidMessageDetail size={25} /></button>
+        <div className='flex justify-around items-center w-full'>
+          <div className={`flex flex-col items-center justify-center gap-1 cursor-pointer ${active === 0 && 'text-dark font-medium'}`} onClick={()=> handelSlide(0)}>
+            <button className={`${active === 0 && 'bg-gray-200 px-5 p-[4px] rounded-lg text-xl'} shadow-sm`}><BiSolidMessageDetail size={25} /></button>
             <p>Chats</p>
           </div>
-          <div className={`flex flex-col items-center gap-1 cursor-pointer ${active === 1 && 'text-light font-bold'}`}  onClick={()=> handelSlide(1)}>
-            <button className={`${active === 1 && 'bg-gray-200 shadow-md px-5 p-[2px] rounded-md'}`}><MdOutlinePhone size={25} /></button>
+          <div className={`flex flex-col items-center justify-center gap-1 cursor-pointer ${active === 1 && 'text-dark font-medium'}`} onClick={()=> handelSlide(1)}>
+            <button className={`${active === 1 && 'bg-gray-200 px-5 p-[4px] rounded-lg text-xl'} shadow-sm`}><MdOutlinePhone size={25} /></button>
             <p>Calls</p>
           </div>
-          <div className={`flex flex-col items-center gap-1 cursor-pointer ${active === 2 && 'text-light font-bold'}`}  onClick={()=> handelSlide(2)}>
-            <button className={`${active === 2 && 'bg-gray-200 shadow-md px-5 p-[2px] rounded-md'}`}><MdCamera size={25} /></button>
+          <div className={`flex flex-col items-center justify-center gap-1 cursor-pointer ${active === 2 && 'text-dark font-medium'}`} onClick={()=> handelSlide(2)}>
+            <button className={`${active === 2 && 'bg-gray-200 px-5 p-[4px] rounded-lg text-xl'} shadow-sm`}><MdCamera size={25} /></button>
             <p>Updates</p>
           </div> 
-          <div className={`flex flex-col items-center gap-1 cursor-pointer ${active === 3 && 'text-light font-bold'}`}  onClick={()=> handelSlide(3)}>
-            <button className={`${active === 3 && 'bg-gray-200 shadow-md px-5 p-[2px] rounded-md'}`}><CiShop size={25} /></button>
+          <div className={`flex flex-col items-center justify-center gap-1 cursor-pointer ${active === 3 && 'text-dark font-medium'}`}  onClick={()=> handelSlide(3)}>
+            <button className={`${active === 3 && 'bg-gray-200 px-5 p-[4px] rounded-lg text-xl'} shadow-sm`}><CiShop size={30} /></button>
             <p>Tools</p>
           </div>
         </div>

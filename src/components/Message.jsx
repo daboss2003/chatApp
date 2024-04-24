@@ -23,7 +23,7 @@ function Message() {
   const globalView = useContext(ViewContext);
   
   return (
-    <div className={`md:max-h-[92vh] md:h-[92vh] lg:basis-[40%] md:basis-[50%] bg-white dark:bg-dark md:border-r shadow-md md:rounded-l-xl  dark:border-blueColor md:rounded-bl-none pt-5 md:px-5 h-[82vh] w-full overflow-hidden ${!globalView.showNav ? 'h-screen' : ''}`}>
+    <div className={`md:max-h-[92vh] md:h-[92vh] lg:basis-[40%] md:basis-[50%] md:bg-white dark:bg-dark md:border-r shadow-md md:rounded-l-xl  dark:border-blueColor md:rounded-bl-none pt-5 md:px-5 h-[76vh] w-full overflow-hidden ${!globalView.showNav ? 'h-screen' : ''} bg-gray-100`}>
       <Suspense fallback={<LoaderBg><h2 className='text-lg tracking-wide font-bold gap-4'>Loading...</h2></LoaderBg>}>
         {window.innerWidth >= 768 &&
           <>

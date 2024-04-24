@@ -12,6 +12,7 @@ function Chat() {
   function handleSize() {
     if (window.innerWidth < 768) {
       globalView.setView('chats');
+      effect.setSelectedChat(null)
       if (display.active !== 7) {
         globalView.setShowNav(true);
       }
@@ -21,7 +22,7 @@ function Chat() {
   }
 
   return (
-    <div className={`md:max-h-[92vh] md:h-[92vh] lg:basis-[60%] md:basis-[50%] w-full h-[82vh] ${!globalView.showNav && 'h-[100vh]'}`}>
+    <div className={`md:max-h-[92vh] md:h-[92vh] lg:basis-[60%] md:basis-[50%] w-full h-[76vh] ${!globalView.showNav && 'h-[100vh]'}`}>
       <Suspense
         fallback={
         <LoaderBg>

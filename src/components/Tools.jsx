@@ -13,21 +13,21 @@ import { FaRegCircleQuestion } from 'react-icons/fa6'
 
 function Tools() {
   return (
-    <div className='px-2 w-screen overflow-x-hidden overflow-y-auto max-h-[80vh] pb-8'>
-          <h2 className='flex items-center gap-4 pb-3 px-2'>Last 7 days performance <RiErrorWarningLine size={20} /></h2>
+    <div className='px-2 w-screen overflow-x-hidden overflow-y-auto max-h-[76vh] pb-8'>
+          <h2 className='flex items-center gap-4 pb-3 px-2'>Last 7 days performance <span className='inline-block text-colorTeal'><RiErrorWarningLine size={20} /></span> </h2>
           <div className='flex items-center justify-between px-2 pt-1 pb-3'>
               <div className='p-3 shadow-md rounded-md border flex items-start flex-col gap-1'>
-                  <button><CgMenuGridR size={30} /></button>
+                  <button className='text-colorTeal'><CgMenuGridR size={30} /></button>
                   <p className='text-lg font-medium'>22</p>
                   <p className='text-sm'>Catalog views</p>
               </div>
               <div className='p-3 shadow-md rounded-md border flex items-start flex-col gap-1'>
-                  <button><AiOutlineShop size={30} /></button>
+                  <button className='text-colorTeal'><AiOutlineShop size={30} /></button>
                   <p className='text-lg font-medium'>52</p>
                   <p className='text-sm'>Profile views</p>
               </div>
               <div className='p-3 shadow-md rounded-md border flex items-start flex-col gap-1'>
-                  <button><RiCameraLensFill size={30} /></button>
+                  <button className='text-colorTeal'><RiCameraLensFill size={30} /></button>
                   <p className='text-lg font-medium'>222</p>
                   <p className='text-sm'>Status views</p>
               </div>
@@ -36,13 +36,13 @@ function Tools() {
           <h2 className='font-bold text-xl p-2'>Grow your Business</h2>
           <div className='w-[95%] mx-auto rounded-xl p-4 bg-gray-200 flex gap-2 items-center flex-col mb-3'>
               <div className='flex items-start gap-3'>
-                  <button className='bg-gray-300 p-4 rounded-md text-blueColor'><IoMdMegaphone size={30} /></button>
+                  <button className='bg-gray-300 p-4 rounded-md text-colorTeal'><IoMdMegaphone size={30} /></button>
                   <div className='flex flex-col gap-2 mb-3'>
-                      <h2 className='font-bold text-lg tracking-wide'>Ads that lead to WhatsApp</h2>
+                      <h2 className='font-bold text-lg tracking-wide text-dark'>Ads that lead to WhatsApp</h2>
                       <p className='text-sm'>Reach potential new customers with an ad that lets people start WhatsApp chats with you</p>
                   </div>
               </div>
-              <button className='w-full p-2 rounded-xl bg-blueColor text-light font-bold'>Get started</button>
+              <button className='w-full p-2 rounded-xl bg-colorTeal text-light font-bold'>Get started</button>
           </div>
           <h2 className='font-bold text-xl p-2'>Business tools</h2>
           <MarketList icon={<AiOutlineShop size={30} />} type={'Business Profile'} desc={'Manage address, hours, and websites'} />

@@ -100,7 +100,14 @@ function App() {
     }, [view]);
     
     function handleWidth() {
-    if (window.innerWidth < 768) setView('chats');
+        if (window.innerWidth < 768) {
+            if (selectedChat) {
+            setView('message');
+            }
+            else {
+                 setView('chats');
+            }
+    } 
     else setView('');
   }
 

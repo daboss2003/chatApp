@@ -9,7 +9,7 @@ function UserFollow({ user }) {
         <figure><img src={imageUrl} alt="" className='w-[50px] h-[50px] rounded-full bg-gray-100' /></figure>
           <p>{padNames(username, 18)}</p>
           <button className='bg-gray-200 p-[2px] text-blueColor rounded-full absolute right-[35%] top-[30%]'><BsPatchCheckFill size={18} /></button>
-          <button className='px-3 py-1 bg-gray-300 hover:bg-blueColor text-light duration-300 ease-in-out rounded-lg w-full font-bold'>Follow</button>
+          <button className='px-3 py-1 bg-blue-100 hover:bg-blueColor text-darkLight duration-300 ease-in-out rounded-lg w-full font-bold'>Follow</button>
     </div>
   )
 }

@@ -51,7 +51,7 @@ function AllMessages({ type }) {
           type === 'chat' &&
           <>
             <div className='absolute right-3 bottom-3'>
-              <button className='p-3 bg-blueColor text-light rounded-lg cursor-pointer' onClick={handleNewChatMove}><BiSolidMessageAdd size={20} /></button>
+              <button className='p-3 md:bg-blueColor text-light rounded-lg cursor-pointer bg-colorTeal' onClick={handleNewChatMove}><BiSolidMessageAdd size={20} /></button>
             </div>
           </>
         }

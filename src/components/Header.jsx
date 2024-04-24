@@ -33,7 +33,7 @@ function Header() {
   
 
   return (
-    <div className={`py-[6px] px-3 max-h-[8vh] h-[8vh] items-center justify-between ${globalView.showNav ? 'flex' : 'hidden'}`}>
+    <div className={`py-[6px] px-3 md:max-h-[8vh] md:h-[8vh] items-center justify-between ${globalView.showNav ? 'flex' : 'hidden'} md:bg-gray-200 bg-colorTeal md:text-inherit text-light h-[10vh]`}>
       {window.innerWidth >= 768 && 
         <div className='flex gap-2 sm:w-[30%] justify-center items-center'>
         <figure className='w-[35px]'>
@@ -46,7 +46,7 @@ function Header() {
       }
       {window.innerWidth < 768 && 
         <div className='flex items-center justify-between w-full'>
-          <h2 className='tracking-wide text-xl basis-[45%]'><span className='font-medium text-2xl'>WA</span> Business</h2>
+          <h2 className='tracking-wide text-xl basis-[45%]'><span className='text-2xl'>WA</span> Business</h2>
           <div className='basis-[50%] flex items-center justify-end gap-2'>
             <Button><MdOutlinePhotoCamera size={25} /></Button>
             <Button><IoMdSearch size={25} /></Button>

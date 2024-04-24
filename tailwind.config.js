@@ -15,7 +15,9 @@ export default {
         darkLight: '#00000080',
         blueColor: '#25d366',
         greenLight: '#3464eb',
-        white: '#ffffffcc'
+        white: '#ffffffcc',
+        colorTeal: '#008080',
+        message: '#c0f0a8'
       },
       screens: {
         'xs': '400px',

@@ -27,7 +27,7 @@
 }
 
 .dropdown div{
-    @apply  absolute bg-light shadow-md p-5 rounded-md z-10 left-[45%] flex-col gap-1 hidden  ;
+    @apply  absolute bg-light shadow-md p-5 rounded-md z-10 left-[45%] flex-col gap-1 hidden text-dark  ;
 }
 
 .dropdown div li{
