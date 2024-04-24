@@ -1,5 +1,5 @@
 import React from 'react'
-import loaderPic from '/img/message.png'
+import loaderPic from '/img/chat.png'
 
 function LoaderBg({children}) {
   return (

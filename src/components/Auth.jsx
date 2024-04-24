@@ -60,14 +60,11 @@ function Auth() {
     })
   }
   return (
-    <div className='bg-light flex items-center justify-center h-screen'>
+    <div className='bg-light flex items-center justify-center h-screen max-w-[100vw]'>
       <div>
         <Toaster toastOptions={{duration:4000}} />
         <div className='w-90 flex flex-col gap-4 rounded-lg p-4'>
-          <h1 className='text-center leading-normal font-medium  text-3xl mb-3 text-dark'>WelCome to &nbsp;
-            <span className='font-bold text-dark dark:text-light tracking-wide text-3xl font-playfair inline-block'>chat</span>
-            <span className='font-bold text-blueColor tracking-wide text-3xl font-playfair inline-block'>App</span>
-          </h1>
+          <h1 className='text-center leading-normal font-medium  text-3xl mb-3 text-dark'>WelCome to Whatsapp</h1>
           {showOtp ? 
             <>
             <div className='bg-blueColor text-light w-fit mx-auto p-4 rounded-full'>
@@ -88,7 +85,7 @@ function Auth() {
               <BsTelephoneFill size={30} />
             </div>
             <label htmlFor="ph" className='font-bold text-2xl text-dark text-center'>Verify your phone number</label>
-            <PhoneInput country={'ng'} value={phoneNo} onChange={setPhone} inputStyle={{height: '50px', width: '400px'}} a />
+            <PhoneInput country={'ng'} value={phoneNo} onChange={setPhone} inputStyle={{height: '50px', width: '400px', maxWidth: '95vw'}} a />
             <button className='bg-blueColor flex gap-1 items-center justify-center py-2.5 text-light rounded w-full' onClick={VerifyUsers}>
               {loading && <CgSpinner size={20} className='mt-1 animate-spin'/>}
               

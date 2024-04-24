@@ -109,8 +109,7 @@ function Status() {
       <h2 className='font-bold text-xl tracking-wide text-blueColor md:px-2 px-8'>Status</h2>
       <div className='flex items-center py-4 px-3 gap-7'>
         <figure className='w-[70px] h-[70px] overflow-hidden rounded-full'><img src={user.imageUrl} alt="" className='w-full max-h-[100%]' /></figure>
-        <div className=' flex flex-col gap-2 items-center'>
-          <h2 className='tracking-wide font-lg text-blueColor'>Create New</h2>
+        <div className=' flex flex-col gap-2 items-center absolute right-3 bottom-3'>
           <button onClick={handleShowPost} className='p-2 bg-blueColor text-light rounded-lg cursor-pointer'>{showPost ? <LiaTimesSolid size={22} /> : <FaPlus size={22} /> }</button>
         </div>
       </div>

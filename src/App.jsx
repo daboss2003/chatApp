@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 import { useState } from "react";
 import Main from "./components/Main";
 import Navbar from "./components/Navbar";
@@ -10,7 +10,9 @@ import {
     AllUsersContext,
     NotificationContext,
     PostContext,
-    EffectContext
+    EffectContext,
+    ViewContext,
+    SwiperContext
 } from "./context/context";
 import LoaderBg from "./components/LoaderBg";
 import db from './firebase/firebaseConfig'
@@ -81,6 +83,26 @@ function App() {
     const { loading, currentUser, isLoggedIn } = useAuth();
     const usersCollection = collection(db, "users");
     const [isNewUser, setISNewUser] = useState(false)
+    const [view, setView] = useState('');
+    const [showNav, setShowNav] = useState(true);
+    const swiperRef = useRef();
+
+
+
+
+    useEffect(() => {
+    window.addEventListener('resize', handleWidth);
+    window.addEventListener('DOMContentLoaded', handleWidth);
+    return () => {
+      window.removeEventListener('DOMContentLoaded', handleWidth);
+      window.removeEventListener('resize', handleWidth);
+    }
+    }, [view]);
+    
+    function handleWidth() {
+    if (window.innerWidth < 768) setView('chats');
+    else setView('');
+  }
 
 
     useEffect(() =>
@@ -201,11 +223,15 @@ function App() {
                                 <PostContext.Provider value={data.posts}>
                                     <NotificationContext.Provider value={data.notifications}>
                                         <EffectContext.Provider value={{ selectedChat, setSelectedChat }}>
-                                            <Header />
-                                            <div className="flex flex-col md:flex-row">
-                                                <Navbar />
-                                                <Main />
-                                            </div>
+                                            <ViewContext.Provider value={{ view, setView, showNav, setShowNav }}>
+                                                <Header />
+                                                <div className="flex flex-col md:flex-row">
+                                                    <SwiperContext.Provider value={swiperRef}>
+                                                         <Navbar />
+                                                         <Main />
+                                                    </SwiperContext.Provider>
+                                                </div>
+                                            </ViewContext.Provider>
                                         </EffectContext.Provider>
                                     </NotificationContext.Provider>
                                 </PostContext.Provider>

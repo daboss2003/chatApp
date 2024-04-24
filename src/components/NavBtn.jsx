@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
-import { EffectContext } from '../context/context';
+import { EffectContext, ViewContext } from '../context/context';
 
 function NavBtn({ children, num = 0, activeBtn = false, handleClick = () => null, isUser = false, type=null }) {
   const effect = useContext(EffectContext);
+  const globalView = useContext(ViewContext);
   function handleButtonClick() {
     if (type === null) {
       handleClick(prev => {
@@ -18,9 +19,12 @@ function NavBtn({ children, num = 0, activeBtn = false, handleClick = () => null
     if(type === 'update') {
       handleClick()
     }
-    else {
-      return null;
-    }
+    if (window.innerWidth < 768) {
+      globalView.setView('chats');
+    } 
+    else globalView.setView('')
+    
+    
     
   }
     return (

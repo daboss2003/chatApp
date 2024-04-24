@@ -43,6 +43,7 @@ function List({
 
     if (window.innerWidth < 768) {
       globalView.setView('message')
+      globalView.setShowNav(false)
     }
 
     if (user.id !== sender.id) {
@@ -58,6 +59,13 @@ function List({
       }
       }
   }
+
+
+  if (message.chat.length <= 0) {
+    return
+  }
+
+
   
   return (
     <div className={`w-full max-h-[17%] overflow-hidden flex  m-1 p-3 gap-3 items-center cursor-pointer hover:bg-gray-200 dark:hover:bg-darkLight rounded-md ${index === select ? 'dark:bg-darkLight bg-gray-200' : ''}`} onClick={handleSelect}>
@@ -66,12 +74,12 @@ function List({
               <div className='flex items-center justify-between relative'>
                   <p className='font-bold tracking-wide '>{ sender.username}</p>
                   <p className={`text-sm ${message.chat[message.chat.length - 1]?.seen ? '' : 'text-blueColor'}`}>{moment(message.chat[message.chat.length - 1]?.timestamp).fromNow()}</p>
-                  {user.id !== sender.id && unseen > 0 && <p className='absolute bg-blueColor rounded-full h-[15px] w-[15px] right-2 top-[100%] text-light text-[10px] flex items-center justify-center '>{ unseen }</p>}
+                  {user.id !== sender.id && unseen > 0 ? <p className='absolute bg-blueColor rounded-full h-[15px] w-[15px] right-2 top-[100%] text-light text-[10px] flex items-center justify-center '>{ unseen }</p> : ''}
               </div>
               <div className='flex mt-1 items-center gap-1'>
                   {
                       message.chat[message.chat.length - 1]?.seen ? 
-                          <span className='text-blueColor'><IoCheckmarkDoneOutline size={16} /></span>
+                          <span className='text-greenLight'><IoCheckmarkDoneOutline size={16} /></span>
                           : ''
                 }  
                 {

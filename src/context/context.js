@@ -10,4 +10,5 @@ export const EffectContext = React.createContext();
 export const ViewContext = React.createContext();
 export const RefContext = React.createContext();
 export const AuthContext = React.createContext();
+export const SwiperContext = React.createContext();
 

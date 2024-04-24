@@ -13,8 +13,8 @@ export default {
         dark: '#120201',
         greenBasic: '#128c7e',
         darkLight: '#00000080',
-        greenLight: '#25d366',
-        blueColor: '#3464eb',
+        blueColor: '#25d366',
+        greenLight: '#3464eb',
         white: '#ffffffcc'
       },
       screens: {

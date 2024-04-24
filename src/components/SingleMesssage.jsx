@@ -18,7 +18,7 @@ function SingleMesssage({ chat }) {
 
   return (
     <div className={` flex items-center ${userIsSender ? 'justify-end' : ' justify-start'} mb-3`}>
-      <div className={`max-w-[50%] ${userIsSender ? 'bg-blueColor text-light message__user' : 'bg-light text-darkLight dark:bg-darkLight dark:text-light message'} rounded-lg p-2 relative after:absolute after:bg-inherit after:h-[30px] after:w-[20px] `}>
+      <div className={`max-w-[50%] ${userIsSender ? 'bg-blueColor text-light message__user' : 'bg-light text-darkLight dark:bg-darkLight dark:text-light message'} rounded-lg p-2 relative after:absolute after:bg-inherit after:h-[30px] after:w-[20px]  shadow-md`}>
           {type === 'text' && <p>{text}</p>}
           {type === 'video' && <div className='w-full p-4'><video src={videoUrl} controls className='w-full'></video></div>}
           {type === 'photo' && <div className='w-full p-4'><img src={photoUrl} className='w-full' /></div>}

@@ -15,7 +15,7 @@ function Notifications() {
       <h2 className='font-bold text-xl tracking-wide text-blueColor md:px-2 px-8 mb-4'>Notifications</h2>
       <div className='overflow-y-auto overflow-x-hidden sm:h-[85%] h-[82%]'>
         { notifications.length > 0 ?
-          notifications.map((item, i) => <SingleNote key={item.id} note={item} index={i} select={select} setSelect={setSelect} />)  : <h2>You have no Notification</h2>  
+          notifications.map((item, i) => <SingleNote key={item.id} note={item} index={i} select={select} setSelect={setSelect} />)  : <h2 className='tracking-wide text-lg font-bold h-full w-full flex items-center justify-center'>You have no Notification</h2>  
         }
       </div>
     </div>

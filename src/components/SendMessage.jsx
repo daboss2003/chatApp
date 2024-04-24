@@ -5,15 +5,15 @@ import { LuPhone } from "react-icons/lu";
 import { FaCamera } from "react-icons/fa";
 import { FiMic } from "react-icons/fi";
 import { GrEmoji } from "react-icons/gr";
-import { MdOutlineAttachFile } from "react-icons/md";
+import { MdAddIcCall, MdOutlineAttachFile } from "react-icons/md";
 import Button from './Button';
-import { AllUsersContext, userContext, RefContext, EffectContext } from '../context/context';
+import { AllUsersContext, userContext, RefContext, EffectContext, ViewContext } from '../context/context';
 import { AiOutlineStar } from "react-icons/ai";
 import { AiFillStar } from "react-icons/ai";
 import { MdArchive } from "react-icons/md";
 import { MdOutlineArchive } from "react-icons/md";
 import SingleMesssage from './SingleMesssage';
-import { IoMdSend } from "react-icons/io";
+import {  IoMdSend } from "react-icons/io";
 import db from '../firebase/firebaseConfig';
 import { collection, updateDoc, doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { generateImageName, displayTime } from '../assets/filter';
@@ -31,6 +31,8 @@ import cameraSound from '/cameraClick.mp3'
 import messageSound from '/messageSent.mp3'
 import recordSound from '/recordSound.mp3'
 import { HiPause } from 'react-icons/hi';
+import { CiMenuKebab } from 'react-icons/ci';
+
 
 
 
@@ -57,6 +59,7 @@ function SendMessage({  selected, handleSize }) {
   const [startTime, setStartTime] = useState(null);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [timerInterval, setTimerInterval] = useState(null);
+  const globalView = useContext(ViewContext);
   
  
 
@@ -381,13 +384,17 @@ function SendMessage({  selected, handleSize }) {
     return <h2 className='w-full h-full flex items-center justify-center text-xl font-medium'>{error }</h2>
   }
     return (
-      <div className='h-full w-full relative'>
+      <div className={` w-full relative ${!globalView.showNav ? 'h-[100vh]' : 'h-full'}`}>
          <header className='bg-light dark:bg-dark h-[10%] max-h-[10%] w-full flex items-center justify-between px-3'>
             <div className='flex items-center gap-3'>
                   <Button onClick={handleSize} type={'back'}><FaChevronLeft size={16} /></Button>
-                  <figure className='w-[45px] rounded-full '><img src={sender.imageUrl} alt="" className='w-[30px] h-[30px] rounded-full' /></figure>
-                   <p className='text-blueColor text-sm tracking-wide'>{sender?.active ? 'online' : 'offline'}</p>
-                   <p className='tracking-wide font-bold '>{sender.username}</p>
+            <figure className='w-[45px] rounded-full '><img src={sender.imageUrl} alt="" className='w-[30px] h-[30px] rounded-full' /></figure>
+                <div>
+                 <p className='tracking-wide font-bold '>{sender.username}</p>
+                  <p className='text-blueColor text-sm tracking-wide'>{sender?.active ? 'online' : 'offline'}</p>
+                   
+                </div>
+                   
           </div>
           <div className='lg:static absolute top-20 bg-inherit right-0'>
             <Button type={'call'} onClick={handleStarred}>
@@ -401,17 +408,39 @@ function SendMessage({  selected, handleSize }) {
               }
             </Button>
           </div>
-              <div className='pr-6 flex items-center justify-center'>
+          {window.innerWidth >= 768 &&
+            <div className='pr-6 flex items-center justify-center'>
                   <Button type={'call'}><SlCamrecorder size={18} /></Button>
                   <Button type={'call'}><LuPhone size={18} /></Button>
+            </div>
+          }
+          {window.innerWidth < 768 && 
+            <div className='basis-[50%] flex items-center justify-end gap-2'>
+            <Button><SlCamrecorder  size={25} /></Button>
+              <Button><MdAddIcCall size={25} /></Button>
+              <div className='dropdown'>
+                <Button><CiMenuKebab size={25} /></Button>
+                <div>
+                  <li>Label chat</li>
+                  <li>View contact</li>
+                  <li>Media, links, and docs</li>
+                  <li>Search</li>
+                  <li>Mute notifications</li>
+                  <li>Disappearing messages</li>
+                  <li>Wallpaper</li>
+                  <li>More</li>
+                </div>
               </div>
+            
+          </div>
+          }
         </header>
-        <div className='max-h-[80%] h-[80%] overflow-x-hidden overflow-y-auto px-6 py-4'>
+        <div className='max-h-[80%] h-[80%] overflow-x-hidden overflow-y-auto px-6 py-4 bg-[url(img/bg.jpg)] bg-no-repeat bg-cover bg-center dark:bg-[url(img/bg-dark.webp)]'>
           {
             currentMessage.chat.map(item => <SingleMesssage key={item.chatId} chat={ item } />)
           }
         </div>
-          <form className='h-[10%] flex items-center bg-light dark:bg-dark px-4 gap-3' onSubmit={(e) => e.preventDefault()}>
+          <form className='h-[10%] flex items-center bg-light dark:bg-dark px-4 gap-3 md:rounded-none rounded-3xl md:w-full w-[86%] shadow-md' onSubmit={(e) => e.preventDefault()}>
               <div className='flex items-center gap-3 overflow-y-auto'>
                <Button onClick={handleShowEmoji}><GrEmoji size={18} /></Button>
                 {showEmoji ? <div className='absolute bottom-16'><Picker data={data} onEmojiSelect={handleEmojiSelect} /></div> : ''}
@@ -420,7 +449,7 @@ function SendMessage({  selected, handleSize }) {
                </label>
                <input type="file" onChange={handleFileChange} className='absolute right-[1000%]' id='fileSelect' />
               </div>
-              <div className='flex-1 bg-light dark:bg-dark flex items-center gap-2'>
+              <div className='flex-1 bg-light dark:bg-dark flex items-center gap-2 '>
                 <textarea
                 placeholder='Type message'
                 value={input}
@@ -429,18 +458,20 @@ function SendMessage({  selected, handleSize }) {
                  rows='1'
                  className='bg-transparent w-full outline-none border-none active:outline-none h-[60%] appearance-none'
                  ></textarea>
-                <button className={`py-1 px-3 hover:bg-blueColor hover:text-light rounded-lg duration-300 border border-blueColor dark:text-light items-center justify-center ${input === '' ? 'hidden' : 'flex'}`} onClick={handleTextMessage}><IoMdSend size={18} /></button>
-              </div>
-               <div className='flex items-center gap-3 lg:flex-row flex-col bg-inherit lg:static absolute bottom-14 right-0'>
+            <button className={`py-1 px-3 hover:bg-blueColor hover:text-light rounded-lg duration-300 border border-blueColor dark:text-light items-center justify-center ${input === '' ? 'hidden' : 'flex'}`} onClick={handleTextMessage}><IoMdSend size={18} /></button>
+            <Button onClick={() => setMediaType('image')}><FaCamera size={18} /></Button>
+            <Button onClick={() => setMediaType('video')}><SlCamrecorder size={18} /></Button>
+          </div>
+          {window.innerWidth < 768 &&  <div className='absolute right-0 max-w-[15%] flex justify-center items-center w-[14%]'><button className=' rounded-full bg-blueColor text-light p-4 shadow-md' onClick={handleStartRecording}><FiMic size={18} /></button></div>}
+          
+               <div className='flex items-center gap-3 lg:flex-row flex-col bg-inherit relative'>
                 {mediaType ?
-                   <div className='absolute top-[50%] w-[70vw] h-[62vh] lg:left-[50%] -translate-x-[50%] -translate-y-[50%] bg-light rounded-md p-2 pt-0 dark:bg-darkLight'>
+                   <div className='absolute md:-top-[300px] bottom-[50%] w-[70vw] md:h-[55vh] md:-left-[350px] -translate-x-[50%] -translate-y-[50%] bg-light rounded-md p-2 pt-0 dark:bg-darkLight md:min-w-[80%] md:bottom-0 md:max-h-[55vh] md:w-[40vw] webcam shadow-md'>
                     <Button onClick={handleCloseMediaType}><RxCross2 size={18} /></Button>
                     <Webcam
                     audio={isRecording ? true : false}
-                    height='70%'
                     ref={webcamRef}
                     screenshotFormat="image/jpeg"
-                    width='100%'
                     videoConstraints={videoConstraints}
                   />
                   <div className='p-1 flex items-center justify-center gap-4 pb-2'>
@@ -453,15 +484,15 @@ function SendMessage({  selected, handleSize }) {
                 </div>: ''
                 }
                 {audioRecorder ?
-                  <div className='absolute top-[70%] lg:left-[40%] p-3 -translate-x-[50%] -translate-y-[50%] rounded-md flex items-center justify-between bg-light dark:bg-darkLight'>
+                  <div className='absolute top-[65%] md:-top-[100px] md:-left-[200px] p-2 md:-translate-x-[50%] -translate-y-[65%] rounded-lg flex items-center justify-between bg-light dark:bg-darkLight max-w-[98vw] -translate-x-[35%] shadow-md'>
                     <Button onClick={handleCloseRecorder}><RxCross2 size={18} /></Button>
-                <div className='bg-light p-3 rounded-lg flex m-2 items-center justify-between gap-4 dark:bg-dark'><Button onClick={handleRecordingMotion}>{audioRecording ? <HiPause size={22} /> : <FaPlay size={18} /> }</Button> <progress value={audioLevel} className='h-2 rounded-lg' max={10000}></progress> <p className=''>{ time}</p></div>
+                <div className='bg-light md:p-2 p-1 rounded-lg flex m-2 items-center justify-between md:gap-4 gap-2 dark:bg-dark'><Button onClick={handleRecordingMotion}>{audioRecording ? <HiPause size={22} /> : <FaPlay size={18} /> }</Button> <progress value={audioLevel} className='h-2 rounded-lg' max={10000}></progress> <p className=''>{ time}</p></div>
                     <button className={`py-1 px-3 hover:bg-blueColor hover:text-light rounded-lg duration-300 border border-blueColor dark:text-light items-center justify-center`} onClick={handleUploadAudio}><IoMdSend size={18} /></button>
                   </div> : ''
                 }
-                <Button onClick={() => setMediaType('image')}><FaCamera size={18} /></Button>
-                <Button onClick={() => setMediaType('video')}><SlCamrecorder size={18} /></Button>
-                <Button onClick={handleStartRecording}><FiMic size={18} /></Button>
+                
+                {window.innerWidth >= 768 && <Button onClick={handleStartRecording}><FiMic size={18} /></Button>}
+                
               </div>
           </form>
       </div>

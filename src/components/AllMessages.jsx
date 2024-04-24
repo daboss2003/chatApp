@@ -1,9 +1,9 @@
 import React, {useState, useContext} from 'react'
 import SearchBar from './SearchBar'
-import { userContext, displayContext, messageContext, AllUsersContext } from '../context/context';
-import { FaPlus } from "react-icons/fa6";
+import { userContext, displayContext, messageContext, AllUsersContext, ViewContext } from '../context/context';
 import { useFilter } from '../hooks/useFilter';
 import List from './List'
+import { BiSolidMessageAdd } from 'react-icons/bi';
 
 function AllMessages({ type }) {
     const display = useContext(displayContext);
@@ -34,16 +34,24 @@ function AllMessages({ type }) {
     }  
     const [filtered, setFiltered] = useState(initial);
     const { search, handleSearch } = useFilter(filtered, setFiltered, initial);
+  const globalView = useContext(ViewContext)
+  
+  function handleNewChatMove() {
+    display.setActive(7)
+    if (window.innerWidth < 768) {
+      globalView.setShowNav(false);
+    }
+  }
     
     return (
-      <div className='relative  h-full '>
-        <h2 className='font-bold text-xl tracking-wide text-blueColor md:px-2 px-8'>{ name}</h2>
-        <SearchBar placeholder={placeholder} searchInput={search} handleSearchInput={handleSearch} />
+      <div className={`relative  h-full`}>
+        {window.innerWidth >= 768 && <h2 className='font-bold text-xl tracking-wide text-blueColor md:px-2 px-8'>{name}</h2>}
+        {window.innerWidth >= 768 && <SearchBar placeholder={placeholder} searchInput={search} handleSearchInput={handleSearch} />}
         {
           type === 'chat' &&
           <>
             <div className='absolute right-3 bottom-3'>
-              <button className='p-3 bg-blueColor text-light rounded-lg cursor-pointer' onClick={() => display.setActive(7)}><FaPlus size={20} /></button>
+              <button className='p-3 bg-blueColor text-light rounded-lg cursor-pointer' onClick={handleNewChatMove}><BiSolidMessageAdd size={20} /></button>
             </div>
           </>
         }

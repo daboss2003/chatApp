@@ -33,3 +33,12 @@ export function displayTime(time) {
     const formattedTime = `${minutes < 10 ? '0' : ''}${minutes}:${remains < 10 ? '0' : ''}${remains}`;
     return formattedTime;
 }
+
+export function padNames(string, num) {
+    if (string.length <= num) {
+        return string;
+    }
+    else {
+        return string.slice(0,num - 3).padEnd(num, '.')
+    }
+}

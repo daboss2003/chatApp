@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 ::-webkit-scrollbar{
-    @apply w-1 bg-white sm:block hidden ;
+    @apply w-1 bg-white md:block hidden ;
 }
 
 ::-webkit-scrollbar-thumb{
@@ -24,4 +24,20 @@
     top: -15px;
     z-index: 1;
     left: -1%;
+}
+
+.dropdown div{
+    @apply  absolute bg-light shadow-md p-5 rounded-md z-10 left-[45%] flex-col gap-1 hidden  ;
+}
+
+.dropdown div li{
+    @apply list-none py-2 cursor-pointer hover:bg-gray-200 px-4  ;
+}
+
+.dropdown:hover div{
+    @apply flex;
+}
+
+.webcam video{
+    @apply w-[100%] h-[75%]  ;
 }
